@@ -2,22 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SchoolApp.StudentsPage"
-             Title="Студенты">
+             Title="Students">
 
     <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Список студентов" FontSize="24" />
 
+        <Label Text="Students" FontSize="24" />
+
+        <!-- форма: вводишь имя, жмёшь Add -->
+        <HorizontalStackLayout Spacing="10">
+            <Entry  Text="{Binding NewName}"
+                    Placeholder="New student name"
+                    WidthRequest="220" />
+            <Button Text="Add"
+                    Clicked="OnAddClicked" />
+        </HorizontalStackLayout>
+
+        <!-- список -->
         <CollectionView x:Name="StudentsList"
+                        ItemsSource="{Binding Students}"
                         SelectionMode="Single"
                         SelectionChanged="OnStudentSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding .}"
-                           FontSize="18"
-                           Padding="12,8" />
+                    <Grid Padding="10" ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Name}"
+                               Grid.Column="0" FontSize="18" />
+                        <Label Text="{Binding Gpa, StringFormat='GPA: {0:F2}'}"
+                               Grid.Column="1" FontSize="16" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
 
+    </VerticalStackLayout>
 </ContentPage>

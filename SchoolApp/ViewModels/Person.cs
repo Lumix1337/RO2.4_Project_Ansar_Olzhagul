@@ -2,11 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolApp.ViewModels
+using System.ComponentModel;
+
+namespace SchoolApp.ViewModels;
+
+public class Person : INotifyPropertyChanged
 {
-    public class Person
+    private string _name = "Ansar";
+    public string Name
     {
-        public string Name { get; set; } = "Ansar";
-        public string City { get; set; } = "Atyrau";
+        get => _name;
+        set
+        {
+            _name = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+        }
     }
+
+    private string _city = "Atyrau";
+    public string City
+    {
+        get => _city;
+        set
+        {
+            _city = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(City)));
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 }

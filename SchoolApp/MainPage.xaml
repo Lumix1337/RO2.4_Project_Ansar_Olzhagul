@@ -31,6 +31,8 @@
 
         <Label  Text="{Binding Name}" FontSize="20" />
         <Label  Text="{Binding City}" FontSize="16" TextColor="Gray" />
+        <Button Text="Shout the name"
+                Clicked="OnShoutClicked" />
     </VerticalStackLayout>
 
 </ContentPage>

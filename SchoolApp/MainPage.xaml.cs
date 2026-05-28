@@ -21,4 +21,10 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(StudentsPage));
     }
+
+    private void OnShoutClicked(object sender, EventArgs e)
+    {
+        if (BindingContext is Person p)
+            p.Name = p.Name.ToUpper();
+    }
 };
